@@ -1,0 +1,8 @@
+<div class="card">
+    <h2>Enter car model</h2>
+    <div>
+        <input type="text" (input)="inputHandler($event)" value={{carModel}}>
+        <input type="submit" value="Search" (click)="submitInput()">
+        <p>{{warningText}}</p>
+    </div>
+</div>
