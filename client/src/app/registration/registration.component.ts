@@ -46,7 +46,7 @@ export class RegistrationComponent {
         }
 
       } else {
-        this.router.navigate(['/authorization'])
+        this.router.navigate(['client/authorization'])
       }
     })
 
