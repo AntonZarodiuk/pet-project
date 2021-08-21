@@ -14,6 +14,10 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 8080;
 
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/index.html'))
+});
+
 app.use(cors());
 app.use(express.json());
 
@@ -22,9 +26,6 @@ app.use(passport.session());
 require('./config/passport')(passport);
 app.use('/account', router);
 app.use(express.static(path.join(__dirname, 'content')))
-app.get('/', (req, res) => {
-    res.send('Main webpage')
-});
 
 Array.prototype.max = function() {
     return Math.max.apply(null, this);
@@ -33,10 +34,6 @@ Array.prototype.max = function() {
 Array.prototype.min = function() {
     return Math.min.apply(null, this);
 };
-
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/index.html'))
-});
 
 //returns JSON
 async function request(url, method = 'GET', body = null, headers = {}) {
