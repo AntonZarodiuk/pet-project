@@ -25,7 +25,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 require('./config/passport')(passport);
 app.use('/account', router);
-app.use(express.static(path.join(__dirname, 'content')))
+app.use(express.static(path.join(__dirname, 'public')))
 
 Array.prototype.max = function() {
     return Math.max.apply(null, this);
