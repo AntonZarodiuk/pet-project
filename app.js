@@ -12,7 +12,7 @@ const passport = require('passport');
 const cors = require('cors');
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const port = process.env.PORT || 8080;
 
 app.use(cors());
 app.use(express.json());
@@ -86,7 +86,7 @@ mongoose.connect(config.mongoUri, {
     useUnifiedTopology: true,
     useCreateIndex: true
 });
-app.listen(PORT, () => console.log(`[STATUS]: server ok. Listening on port ${PORT}`));
+app.listen(port, () => console.log(`[STATUS]: server ok. Listening on port ${port}`));
 
 IntervalGathering(oneDay, 365);
 
