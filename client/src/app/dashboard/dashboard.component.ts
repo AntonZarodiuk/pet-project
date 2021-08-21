@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Chart, registerables } from 'node_modules/chart.js';
 import { HttpClient } from '@angular/common/http';
-import { forEachChild } from 'typescript';
 
 Chart.register(...registerables);
 
@@ -42,7 +41,7 @@ export class DashboardComponent implements OnInit {
   }
 
   async getDataset() {
-    this.http.get('http://localhost:3000/account/carlist/bmw-x5')
+    this.http.get('account/carlist/bmw-x5')
       .subscribe(async (response: any) => {
         this.chartData = new Map<string, object>(Object.entries(response.prices));
         this.chartName = await response.model;

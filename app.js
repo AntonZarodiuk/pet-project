@@ -12,7 +12,7 @@ const passport = require('passport');
 const cors = require('cors');
 
 const app = express();
-const PORT = config.get('port') || 3000
+const PORT = process.env.PORT || 8080;
 
 app.use(cors());
 app.use(express.json());
@@ -33,6 +33,10 @@ Array.prototype.max = function() {
 Array.prototype.min = function() {
     return Math.min.apply(null, this);
 };
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/index.html'))
+});
 
 //returns JSON
 async function request(url, method = 'GET', body = null, headers = {}) {
@@ -84,5 +88,5 @@ mongoose.connect(config.mongoUri, {
 });
 app.listen(PORT, () => console.log(`[STATUS]: server ok. Listening on port ${PORT}`));
 
-IntervalGathering(3600000, 365);
+IntervalGathering(oneDay, 365);
 

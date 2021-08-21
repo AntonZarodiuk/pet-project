@@ -57,8 +57,7 @@ const appRoute: Routes = [
     HttpClientModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: tokenGetter,
-        allowedDomains: ["localhost:3000"]
+        tokenGetter: tokenGetter
       }
     })
   ],
