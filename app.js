@@ -14,10 +14,13 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 8080;
 
-app.use(express.static(path.join(__dirname, '/public')))
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, '/public/index.html'))
-// });
+app.use(express.static(path.join(__dirname, 'public')))
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/index.html'))
+});
+app.get('/client/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/index.html'))
+});
 
 app.use(cors());
 app.use(express.json());

@@ -8,9 +8,9 @@
 
     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li><a class="nav-link px-2 link-secondary" [routerLink]="['/']">Home</a></li>
-        <li><a class="nav-link px-2 link-secondary" [routerLink]="['/dashboard']">Dashboard</a></li>
-        <li><a class="nav-link px-2 link-secondary" [routerLink]="['/settings']">Settings</a></li>
-        <li><a class="nav-link px-2 link-secondary" [routerLink]="['/about']">About</a></li>
+        <li><a class="nav-link px-2 link-secondary" [routerLink]="['/client/dashboard']">Dashboard</a></li>
+        <li><a class="nav-link px-2 link-secondary" [routerLink]="['/client/settings']">Settings</a></li>
+        <li><a class="nav-link px-2 link-secondary" [routerLink]="['/client/about']">About</a></li>
     </ul>
 
     <div class="col-md-3 text-end">
@@ -19,7 +19,7 @@
             type="button" 
             class="btn btn-warning"
             (click)="authService.logout()"
-            [routerLink]="['/authorization']"
+            [routerLink]="['/client/authorization']"
             >
             Logout
         </button>
@@ -27,7 +27,7 @@
             *ngIf="!authService.isLoggedIn()"
             type="button" 
             class="btn btn-outline-primary me-2" 
-            [routerLink]="['/authorization']"
+            [routerLink]="['/client/authorization']"
             >
             Sign-in
         </button>
@@ -35,7 +35,7 @@
             *ngIf="!authService.isLoggedIn()"
             type="button" 
             class="btn btn-primary"
-            [routerLink]="['/registration']"
+            [routerLink]="['/client/registration']"
             >
             Sign-up
         </button>

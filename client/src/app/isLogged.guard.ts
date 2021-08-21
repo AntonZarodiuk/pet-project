@@ -11,7 +11,7 @@ export class IsLoggedIn implements CanActivate {
     
     canActivate() {
         if (!this.authService.isLoggedIn()) {
-            this.router.navigate(['authorization'])
+            this.router.navigate(['client/authorization'])
             return false;
         } else {
             return true;

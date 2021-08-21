@@ -29,11 +29,11 @@ export function tokenGetter() {
 
 const appRoute: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'authorization', component: AuthorizationComponent },
-  { path: 'registration', component: RegistrationComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'settings', component: SettingsComponent, canActivate: [IsLoggedIn] },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [IsLoggedIn]},
+  { path: 'client/authorization', component: AuthorizationComponent },
+  { path: 'client/registration', component: RegistrationComponent },
+  { path: 'client/about', component: AboutComponent },
+  { path: 'client/settings', component: SettingsComponent, canActivate: [IsLoggedIn] },
+  { path: 'client/dashboard', component: DashboardComponent, canActivate: [IsLoggedIn]},
 ];
 
 @NgModule({

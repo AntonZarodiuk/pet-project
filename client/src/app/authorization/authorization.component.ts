@@ -47,7 +47,7 @@ export class AuthorizationComponent implements OnInit {
         }
       } else {
         this.authService.storeUser(response.token, response.user);
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['client/dashboard']);
       }
     })
   }
