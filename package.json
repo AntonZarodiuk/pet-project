@@ -32,7 +32,8 @@
     "node-fetch": "^2.6.1",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "chart.js": "^3.5.1"
   },
   "devDependencies": {
     "concurrently": "^6.2.0",
