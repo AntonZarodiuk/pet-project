@@ -11,33 +11,36 @@
     <br>
     <label for="inputPassword6">Login*</label>
     <input
+        required
         type="text"
         [(ngModel)]="login"
         name="login"
         placeholder="login"
         class="form-control"
     >
-    <div [innerHTML]="loginMessage"></div>
+    <div>{{ loginError }}</div>
     <br>
     <label for="inputPassword6">Email*</label>
     <input
+        required
         type="text"
         [(ngModel)]="email"
         name="email"
         placeholder="email@example.com"
         class="form-control"
     >
-    <div [innerHTML]="emailMessage"></div>
+    <div>{{ emailError }}</div>
     <br>
     <label for="inputPassword6">Password*</label>
     <input
+        required
         type="password"
         [(ngModel)]="password"
         name="password"
         placeholder="password"
         class="form-control"
     >
-    <div [innerHTML]="passwordMessage"></div>
+    <div>{{ passError }}</div>
     <br>
 
     <p>* required fields</p>

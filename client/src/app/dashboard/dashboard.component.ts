@@ -1,11 +1,11 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
-import { AuthService } from '../auth.service';
-import { Router } from '@angular/router';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { Chart, registerables } from 'node_modules/chart.js';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
+import { Label } from 'ng2-charts';
+// import * as pluginAnnotations from 'chartjs-plugin-annotation';
 
-Chart.register(...registerables);
+import { ViewChild } from '@angular/core';
+import { Color, BaseChartDirective } from 'ng2-charts';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,8 +14,6 @@ Chart.register(...registerables);
 })
 export class DashboardComponent implements OnInit {
 
-  myChart: any;
-  chartName: string = '';
   chartData = new Map(
     Object.entries({
       '2021-01-01': { 'price': '145' } as object,
@@ -24,12 +22,66 @@ export class DashboardComponent implements OnInit {
     })
   )
 
+  minPrices: number[] = [];
+  maxPrices: number[] = [];
+  averagePrices: number[] = [];
+  labels: string[] = [];
+
+
+  public lineChartOptions: (ChartOptions & { annotation: any }) = {
+    responsive: true,
+    scales: {
+      // We use this empty structure as a placeholder for dynamic theming.
+      xAxes: [{}],
+      yAxes: [
+        {
+          id: 'y-axis-0',
+          position: 'left',
+        },
+        {
+          id: 'y-axis-1',
+          position: 'right',
+          gridLines: {
+            color: 'rgba(255,0,0,0.3)',
+          },
+          ticks: {
+            fontColor: 'red',
+          }
+        }
+      ]
+    },
+    annotation: {
+      annotations: [
+        {
+          type: 'line',
+          mode: 'vertical',
+          scaleID: 'x-axis-0',
+          value: 'March',
+          borderColor: 'orange',
+          borderWidth: 2,
+          label: {
+            enabled: true,
+            fontColor: 'orange',
+            content: 'LineAnno'
+          }
+        },
+      ],
+    },
+  };
+
+  public lineChartLabels: Label[] = [];
+  public lineChartType: ChartType = 'line';
+
+  public lineChartLegend = true;
+  public lineChartData: ChartDataSets[] = [
+    { data: this.minPrices, label: 'Min price' },
+    { data: this.maxPrices, label: 'Max price' },
+    { data: this.averagePrices, label: 'Avarage price' },
+  ]
+
+  @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective | undefined;
 
   constructor(
-    private router: Router,
-    private authService: AuthService,
-    private jwtHelper: JwtHelperService,
-    private elementRef: ElementRef,
     private http: HttpClient
   ) { }
 
@@ -40,72 +92,33 @@ export class DashboardComponent implements OnInit {
     this.getDataset();
   }
 
-  async getDataset() {
-    this.http.get('account/carlist/bmw-x5')
-      .subscribe(async (response: any) => {
-        this.chartData = new Map<string, object>(Object.entries(response.prices));
-        this.chartName = await response.model;
-        this.renderChart(this.chartData);
-      });
+  dataHandler() {
+    this.labels = Array.from(this.chartData.keys());
+    let temp: any = Array.from(this.chartData.values());
+    console.log("temp: ", temp);
+    this.minPrices = temp.map( (item: any) => {return item.minPrice});
+    this.maxPrices = temp.map( (item: any) => {return item.maxPrice});
+    this.averagePrices = temp.map( (item: any) => {return item.averagePrice});
+    console.log(this.labels);
+    console.log(this.minPrices);
+    console.log(this.maxPrices);
+    console.log(this.averagePrices);
+    this.lineChartData = [
+      { data: this.minPrices, label: 'Min price' },
+      { data: this.maxPrices, label: 'Max price' },
+      { data: this.averagePrices, label: 'Avarage price' },
+    ]
+    this.lineChartLabels = this.labels;
+    this.chart?.update();
   }
 
-  renderChart(data: Map<string, object>) {
-    let arr = Array.from(data.values());
-    let minPrices: number[] = [];
-    let maxPrices: number[] = [];
-    let averagePrices: number[] = [];
-    arr.forEach((item: any) => {
-      minPrices.push(item.minPrice);
-      maxPrices.push(item.maxPrice);
-      averagePrices.push(item.averagePrice);
-    })
-  
-    this.myChart = new Chart('chart', {
-      type: 'line',
-      data: {
-        labels: Array.from(data.keys()),
-        datasets: [{
-          label: "Avarage price",
-          data: averagePrices,
-          backgroundColor: 'rgba(255, 99, 132, 0.2)',
-          borderColor: 'rgba(255, 99, 132, 1)'
-        },
-        {
-          label: "Min price",
-          data: minPrices,
-          backgroundColor: 'rgba(255, 192, 203, 0.2)',
-          borderColor: 'rgba(255, 192, 203, 1)'
-        },
-        {
-          label: "Max price",
-          data: maxPrices,
-          backgroundColor: 'rgba(145, 61, 136, 0.2)',
-          borderColor: 'rgba(145, 61, 136, 1)'
-        }]
-      },
-      options: {
-        scales: {
-          yAxes: {
-            ticks: {
-
-              callback: function (value: any) {
-                return '$' + value;
-              }
-            }
-          },
-        },
-        responsive: true,
-        plugins: {
-          legend: {
-            position: 'top',
-          },
-          title: {
-            display: true,
-            text: `${this.chartName} prices`
-          }
-        }
-      },
-    });
+  getDataset() {
+    this.http.get('account/carlist/bmw-x5')
+      .subscribe((response: any) => {
+        this.chartData = new Map<string, object>(Object.entries(response.prices));
+        console.log(response);
+        this.dataHandler();
+      });
   }
 
 }

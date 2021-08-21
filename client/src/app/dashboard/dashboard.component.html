@@ -2,5 +2,12 @@
     <h1>Welcome, {{ login }}!</h1>
     <br>
 </div>
-
-  <canvas id="chart">{{ myChart }}</canvas>
+<div>
+  <canvas baseChart
+    [datasets]="lineChartData"
+    [labels]="lineChartLabels"
+    [options]="lineChartOptions"
+    [legend]="lineChartLegend"
+    [chartType]="lineChartType"
+  ></canvas>
+</div>

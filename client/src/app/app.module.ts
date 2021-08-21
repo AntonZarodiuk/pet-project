@@ -7,7 +7,7 @@ import { AuthorizationComponent } from './authorization/authorization.component'
 import { RegistrationComponent } from './registration/registration.component';
 import { HeaderComponent } from './header/header.component';
 
-import { ActivatedRouteSnapshot, Router, RouterModule, RouterStateSnapshot, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule } from '@angular/forms';
@@ -21,11 +21,11 @@ import { IsLoggedIn } from './isLogged.guard';
 import { AboutComponent } from './about/about.component';
 import { SettingsComponent } from './settings/settings.component';
 import { InfoService } from './info.service';
+import { ChartsModule } from 'ng2-charts';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
 }
-
 
 const appRoute: Routes = [
   { path: '', component: HomeComponent },
@@ -55,6 +55,7 @@ const appRoute: Routes = [
     RouterModule.forRoot(appRoute),
     FormsModule,
     HttpClientModule,
+    ChartsModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter
