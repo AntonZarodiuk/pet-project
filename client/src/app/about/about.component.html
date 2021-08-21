@@ -1,0 +1,33 @@
+<div class="row">
+    <h1>About</h1>
+    <div class="col">
+        <p>Welcome, stranger! This application will help you monitor the change in car prices.
+            The application is currently under development and there is only one model available for display - the BMW
+            X5.
+        </p>
+        <p>Let me introduce myself. My name is Anton Zarodiuk, I a, from Ukraine, Kiyv and I am the author of this
+            application.
+            It's completely free, and the source code can be found on my git-hub repository.
+            I'm just a beginner and this application was created to teach and consolidate in practice the acquired
+            skills, so there may be bugs :)
+        </p>
+        <p>If you want to contact me, please use folowing social media links.</p>
+    </div>
+    <div class="col" *ngIf="response">
+        <img src="{{response.avatar_url}}" alt="" width="250px" height="250px" class="rounded mx-auto d-block">
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <a href="https://github.com/AntonZarodiuk" class="btn btn-dark" style="margin-right: 16px;">
+            Git-Hub
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=100014047360212" class="btn btn-outline-primary"
+            style="margin-right: 16px;">
+            Facebook
+        </a>
+        <a href="https://www.instagram.com/anton_the_chemist/" class="btn btn-danger" style="margin-right: 16px;">
+            Instagram
+        </a>
+    </div>
+</div>

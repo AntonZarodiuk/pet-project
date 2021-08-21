@@ -1,0 +1,10 @@
+api key: Bve0MVgTFQ5s5CssLUQ7MjUqxGKPj64O3MN92ak7
+user ID: 9459975
+email: anton.zarodyuk@gmail.com
+register data: 2020-08-14 13:30:24
+
+
+
+api GET
+
+https://developers.ria.com/auto/average_price?api_key=Bve0MVgTFQ5s5CssLUQ7MjUqxGKPj64O3MN92ak7&marka_id=9&model_id=96&raceInt=10&raceInt=100

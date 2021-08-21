@@ -1,0 +1,6 @@
+{
+    "port": 3000,
+    "JWTsecret": "leviathan",
+    "mongoUri": "mongodb+srv://zarodiuk:qwerty78@cluster0.kbq0o.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "autoRIAapi": "https://developers.ria.com/auto/average_price?api_key=Bve0MVgTFQ5s5CssLUQ7MjUqxGKPj64O3MN92ak7&marka_id=9&model_id=96&raceInt=10&raceInt=100"
+}
