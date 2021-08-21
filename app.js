@@ -68,14 +68,14 @@ async function dataGathering() {
     await CarListModel.sendData(data);
 };
 
-function IntervalGathering(ms, numberOfCycles) {
+function IntervalGathering(ms) {
     dataGathering();
     let timerId = setInterval(() => {
         dataGathering();
     }, ms)
-    setTimeout(() => {
-        clearInterval(timerId)
-    }, ms * numberOfCycles)
+    // setTimeout(() => {
+    //     clearInterval(timerId)
+    // }, ms * numberOfCycles)
 };
 
 // ****************************************************************************************************************
@@ -88,5 +88,5 @@ mongoose.connect(config.mongoUri, {
 });
 app.listen(port, () => console.log(`[STATUS]: server ok. Listening on port ${port}`));
 
-IntervalGathering(oneDay, 365);
+IntervalGathering(oneDay);
 
