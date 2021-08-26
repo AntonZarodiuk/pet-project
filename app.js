@@ -4,7 +4,6 @@ const config = require('config');
 const mongoose = require('mongoose')
 const fetch = require('node-fetch');
 const { format } = require('date-fns');
-const oneDay = 86400000;
 const CarListModel = require('./models/CarPriceList.js');
 const router = require('./routes/routes.js')
 const passport = require('passport');
@@ -70,12 +69,9 @@ async function dataGathering() {
 
 function IntervalGathering(ms) {
     dataGathering();
-    let timerId = setInterval(() => {
+    setInterval(() => {
         dataGathering();
     }, ms)
-    // setTimeout(() => {
-    //     clearInterval(timerId)
-    // }, ms * numberOfCycles)
 };
 
 // ****************************************************************************************************************
@@ -88,5 +84,5 @@ mongoose.connect(config.mongoUri, {
 });
 app.listen(port, () => console.log(`[STATUS]: server ok. Listening on port ${port}`));
 
-IntervalGathering(oneDay/4);
+IntervalGathering(1000*60*60); // Every hour
 

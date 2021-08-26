@@ -95,14 +95,9 @@ export class DashboardComponent implements OnInit {
   dataHandler() {
     this.labels = Array.from(this.chartData.keys());
     let temp: any = Array.from(this.chartData.values());
-    console.log("temp: ", temp);
     this.minPrices = temp.map( (item: any) => {return item.minPrice});
     this.maxPrices = temp.map( (item: any) => {return item.maxPrice});
     this.averagePrices = temp.map( (item: any) => {return item.averagePrice});
-    console.log(this.labels);
-    console.log(this.minPrices);
-    console.log(this.maxPrices);
-    console.log(this.averagePrices);
     this.lineChartData = [
       { data: this.minPrices, label: 'Min price' },
       { data: this.maxPrices, label: 'Max price' },
@@ -116,7 +111,6 @@ export class DashboardComponent implements OnInit {
     this.http.get('account/carlist/bmw-x5')
       .subscribe((response: any) => {
         this.chartData = new Map<string, object>(Object.entries(response.prices));
-        console.log(response);
         this.dataHandler();
       });
   }
