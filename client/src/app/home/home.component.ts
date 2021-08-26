@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
   private news(articleArr: object[]) {
     this.articles = articleArr;
     articleArr.forEach( (element: any) => {
-      this.images.push(element.media[0]?.["media-metadata"]?.[1].url)
+      this.images.push(element.media[0]?.["media-metadata"]?.[2].url)
     })
   }
 
