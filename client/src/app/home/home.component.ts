@@ -24,7 +24,8 @@ import { state, trigger, style, transition, animate } from '@angular/animations'
   ]
 })
 export class HomeComponent implements OnInit {
-  index: number = Math.floor(96*Math.random());
+  index: number = Math.floor(16*Math.random());
+  images: object[] = [];
   articles: any;
   constructor(
     private infoService: InfoService
@@ -45,7 +46,9 @@ export class HomeComponent implements OnInit {
 
   private news(articleArr: object[]) {
     this.articles = articleArr;
-    console.log(this.articles[0].image)
+    articleArr.forEach( (element: any) => {
+      this.images.push(element.media[0]?.["media-metadata"]?.[1].url)
+    })
   }
 
 }

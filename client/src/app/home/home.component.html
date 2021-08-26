@@ -25,10 +25,10 @@
                         <a href="{{articles[index].url}}" class="link-light">
                             <div class="my-3 py-3">
                                 <h2 class="display-5">{{ articles[index].title }}</h2>
-                                <p class="lead">{{ articles[index].author }}</p>
+                                <p class="lead">{{ articles[index].source }}</p>
                             </div>
-                            <div *ngIf="articles[index].image">
-                                <img src='{{articles[index].image}}'
+                            <div *ngIf='images[index]'>
+                                <img src='{{images[index]}}'
                                     style="width: 100%; height: 100%; border-radius: 21px 21px 21px 21px;">
                             </div>
                         </a>
@@ -38,10 +38,10 @@
                         <a href="{{articles[index+1].url}}" class="link-light">
                             <div class="my-3 py-3">
                                 <h2 class="display-5">{{ articles[index+1].title }}</h2>
-                                <p class="lead">{{ articles[index+1].author }}</p>
+                                <p class="lead">{{ articles[index+1].source }}</p>
                             </div>
-                            <div *ngIf="articles[index+1].image">
-                                <img src='{{articles[index+1].image}}'
+                            <div *ngIf='images[index+1]'>
+                                <img src='{{images[index+1]}}'
                                     style="width: 100%; height: 100%; border-radius: 21px 21px 21px 21px;">
                             </div>
                         </a>
@@ -53,10 +53,10 @@
                         <a href="{{articles[index+2].url}}" class="link-light">
                             <div class="my-3 py-3">
                                 <h2 class="display-5">{{ articles[index+2].title }}</h2>
-                                <p class="lead">{{ articles[index+2].author }}</p>
+                                <p class="lead">{{ articles[index+2].source }}</p>
                             </div>
-                            <div *ngIf="articles[index+2].image">
-                                <img src='{{articles[index+2].image}}'
+                            <div *ngIf='images[index+2]'>
+                                <img src='{{images[index+2]}}'
                                     style="width: 100%; height: 100%; border-radius: 21px 21px 21px 21px;">
                             </div>
                         </a>
@@ -66,10 +66,10 @@
                         <a href="{{articles[index+3].url}}" class="link-light">
                             <div class="my-3 py-3">
                                 <h2 class="display-5">{{ articles[index+3].title }}</h2>
-                                <p class="lead">{{ articles[index+3].author }}</p>
+                                <p class="lead">{{ articles[index+3].source }}</p>
                             </div>
-                            <div *ngIf="articles[index+3].image">
-                                <img src='{{articles[index+3].image}}'
+                            <div *ngIf='images[index+3]'>
+                                <img src='{{images[index+3]}}'
                                     style="width: 100%; height: 100%; border-radius: 21px 21px 21px 21px;">
                             </div>
                         </a>

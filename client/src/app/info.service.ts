@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class InfoService {
   private articles: object[] = []
+  private source: string = "https://api.nytimes.com/svc/mostpopular/v2/viewed/30.json?api-key=t4B0ag4wWXyagqBUEnQJDzBXRb5ELldB";
 
   constructor(
     private http: HttpClient,
@@ -13,9 +14,9 @@ export class InfoService {
 
   public getNews(callback: any) {
     return new Promise((resolve, reject) => {
-      this.http.get('http://api.mediastack.com/v1/news?access_key=b0276f8acb25c2c3e7f5b07fcf2c8134&languages=en&keywords=car&sort=popularity&limit=100')
+      this.http.get(this.source)
         .subscribe((response: any) => {
-          this.articles = response.data;
+          this.articles = response.results;
           callback(this.articles);
           resolve(true);
         })
