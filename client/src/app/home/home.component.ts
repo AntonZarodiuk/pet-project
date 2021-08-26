@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit {
 
   private news(articleArr: object[]) {
     this.articles = articleArr;
+    console.log(this.articles[0].image)
   }
 
 }

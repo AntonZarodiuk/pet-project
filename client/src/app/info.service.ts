@@ -13,9 +13,9 @@ export class InfoService {
 
   public getNews(callback: any) {
     return new Promise((resolve, reject) => {
-      this.http.get('https://newsapi.org/v2/everything?q=BMW&pageSize=100&language=en&sortBy=relevancy&apiKey=bcb7617efecd4de4b50fb29be845499f')
+      this.http.get('http://api.mediastack.com/v1/news?access_key=b0276f8acb25c2c3e7f5b07fcf2c8134&languages=en&keywords=car&sort=popularity&limit=100')
         .subscribe((response: any) => {
-          this.articles = response.articles;
+          this.articles = response.data;
           callback(this.articles);
           resolve(true);
         })

@@ -27,8 +27,8 @@
                                 <h2 class="display-5">{{ articles[index].title }}</h2>
                                 <p class="lead">{{ articles[index].author }}</p>
                             </div>
-                            <div>
-                                <img src='{{articles[index].urlToImage}}'
+                            <div *ngIf="articles[index].image">
+                                <img src='{{articles[index].image}}'
                                     style="width: 100%; height: 100%; border-radius: 21px 21px 21px 21px;">
                             </div>
                         </a>
@@ -40,8 +40,8 @@
                                 <h2 class="display-5">{{ articles[index+1].title }}</h2>
                                 <p class="lead">{{ articles[index+1].author }}</p>
                             </div>
-                            <div>
-                                <img src='{{articles[index+1].urlToImage}}'
+                            <div *ngIf="articles[index+1].image">
+                                <img src='{{articles[index+1].image}}'
                                     style="width: 100%; height: 100%; border-radius: 21px 21px 21px 21px;">
                             </div>
                         </a>
@@ -55,8 +55,8 @@
                                 <h2 class="display-5">{{ articles[index+2].title }}</h2>
                                 <p class="lead">{{ articles[index+2].author }}</p>
                             </div>
-                            <div>
-                                <img src='{{articles[index+2].urlToImage}}'
+                            <div *ngIf="articles[index+2].image">
+                                <img src='{{articles[index+2].image}}'
                                     style="width: 100%; height: 100%; border-radius: 21px 21px 21px 21px;">
                             </div>
                         </a>
@@ -68,8 +68,8 @@
                                 <h2 class="display-5">{{ articles[index+3].title }}</h2>
                                 <p class="lead">{{ articles[index+3].author }}</p>
                             </div>
-                            <div>
-                                <img src='{{articles[index+3].urlToImage}}'
+                            <div *ngIf="articles[index+3].image">
+                                <img src='{{articles[index+3].image}}'
                                     style="width: 100%; height: 100%; border-radius: 21px 21px 21px 21px;">
                             </div>
                         </a>
