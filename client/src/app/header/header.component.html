@@ -8,8 +8,8 @@
 
     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li><a class="nav-link px-2 link-secondary" [routerLink]="['/']">Home</a></li>
-        <li><a class="nav-link px-2 link-secondary" [routerLink]="['/client/dashboard']">Dashboard</a></li>
-        <li><a class="nav-link px-2 link-secondary" [routerLink]="['/client/settings']">Settings</a></li>
+        <li *ngIf="authService.isLoggedIn()"><a class="nav-link px-2 link-secondary" [routerLink]="['/client/dashboard']">Dashboard</a></li>
+        <li *ngIf="authService.isLoggedIn()"><a class="nav-link px-2 link-secondary" [routerLink]="['/client/settings']">Settings</a></li>
         <li><a class="nav-link px-2 link-secondary" [routerLink]="['/client/about']">About</a></li>
     </ul>
 

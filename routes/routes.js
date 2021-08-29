@@ -48,7 +48,7 @@ router.post('/authorization', (req, res) => {
             }
             if (isMatch) {
                 const token = jwt.sign(result.toJSON(), config.JWTsecret, {
-                    expiresIn: '10h'
+                    expiresIn: '1h'
                 })
 
                 res.json({
@@ -68,8 +68,16 @@ router.post('/authorization', (req, res) => {
     })
 })
 
-router.get('/dashboard', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.post('/change-password', async (req, res) => {
+    let {login, oldPassword, newPassword} = req.body;
+    User.changePassword(login, oldPassword, newPassword, (success, msg) => {
+        // console.log(`From outter function: success: ${success}: ${msg}`)
+        return res.json({ success, msg });
+    });
+})
 
+router.get('/dashboard', passport.authenticate('jwt', { session: false }), (req, res) => {
+    // why is this function here and so empy inside?
 })
 
 module.exports = router;

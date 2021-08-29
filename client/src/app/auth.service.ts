@@ -33,6 +33,16 @@ export class AuthService {
       {headers: headers}
     );
   }
+
+  changePassword(user: object) {
+    let headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/json');
+    return this.http.post(
+      'account/change-password',
+      user,
+      {headers: headers}
+    );
+  }
   
   authUser(user: object) {
     let headers = new HttpHeaders();

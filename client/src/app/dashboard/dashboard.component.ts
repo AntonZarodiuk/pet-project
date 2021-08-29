@@ -37,6 +37,12 @@ export class DashboardComponent implements OnInit {
         {
           id: 'y-axis-0',
           position: 'left',
+          ticks: {
+            fontColor: 'red',
+            callback: function (value, index, values) {
+              return '$' + value;
+            }
+          }
         },
         {
           id: 'y-axis-1',
@@ -44,9 +50,6 @@ export class DashboardComponent implements OnInit {
           gridLines: {
             color: 'rgba(255,0,0,0.3)',
           },
-          ticks: {
-            fontColor: 'red',
-          }
         }
       ]
     },
@@ -95,9 +98,9 @@ export class DashboardComponent implements OnInit {
   dataHandler() {
     this.labels = Array.from(this.chartData.keys());
     let temp: any = Array.from(this.chartData.values());
-    this.minPrices = temp.map( (item: any) => {return item.minPrice});
-    this.maxPrices = temp.map( (item: any) => {return item.maxPrice});
-    this.averagePrices = temp.map( (item: any) => {return item.averagePrice});
+    this.minPrices = temp.map((item: any) => { return item.minPrice });
+    this.maxPrices = temp.map((item: any) => { return item.maxPrice });
+    this.averagePrices = temp.map((item: any) => { return item.averagePrice });
     this.lineChartData = [
       { data: this.minPrices, label: 'Min price' },
       { data: this.maxPrices, label: 'Max price' },

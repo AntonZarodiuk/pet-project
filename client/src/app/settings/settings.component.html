@@ -1,1 +1,29 @@
-<p>Currently unavailible</p>
+<h1>Change password</h1>
+<form (submit)="userChangePasswordClick()">
+    <label for="inputPassword6">Old Password</label>
+    <input
+        type="password"
+        [(ngModel)]="oldPassword"
+        name="password"
+        placeholder="Old Password"
+        class="form-control"
+    >
+    <br>
+    <label for="inputPassword6">New Password</label>
+    <input
+        type="password"
+        [(ngModel)]="newPassword"
+        name="password"
+        placeholder="New Password"
+        class="form-control"
+    >
+    <div>{{ passwordMessage }}</div>
+    <br>
+    
+    <button 
+        class="btn btn-success"
+        type="submit"
+        >
+        Change Password
+    </button>
+</form>

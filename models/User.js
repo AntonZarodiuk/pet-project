@@ -43,7 +43,7 @@ User.validate = async function (user) {
     await User.getUserByLogin(login, (err, result) => {
         if (err) throw err;
         if (result) {
-            return response = { success: false, msg: 'Login is already used', type: "LoginError"}
+            return response = { success: false, msg: 'Login is already used', type: "LoginError" }
         } else {
             validLogin = true;
         }
@@ -51,13 +51,13 @@ User.validate = async function (user) {
     await User.getUserByEmail(email, (err, result) => {
         if (err) throw err;
         if (result) {
-            return response = { success: false, msg: 'Email is already used', type: "EmailError"}
+            return response = { success: false, msg: 'Email is already used', type: "EmailError" }
         } else {
             validEmail = true
         }
     });
     if (validEmail && validLogin) {
-        response = {success: true, msg: 'Registration completed'};
+        response = { success: true, msg: 'Registration completed' };
     }
     return response;
 };
@@ -77,11 +77,42 @@ User.addUser = function (newUser) {
 
 User.comparePassword = function (enteredPassword, DBPassword, callback) {
     bcrypt.compare(enteredPassword, DBPassword, (err, isMatch) => {
+        // console.log(`*** bcrypt comparing entered ${enteredPassword} and from DB ${DBPassword} ***`)
+        // console.log(`*** isMatch: ${isMatch} ***`)
         if (err) {
             throw err;
         }
         callback(null, isMatch);
     })
 };
+
+User.changePassword = function (login, oldPassword, newPassword, callback) {
+    // console.log('We are in changePassword with ', login, oldPassword, newPassword)
+    User.getUserByLogin(login, (err, user) => {
+        if (err) {
+            throw err
+        }
+        User.comparePassword(oldPassword, user.password, (err, isMatch) => {
+            // console.log(`Comparing (old) ${oldPassword} and (from DB) ${user.password}`)
+            if (err) {
+                throw err;
+            }
+            if (isMatch) {
+                // console.log(`isMatch: ${isMatch}, user: ${user}`);
+                bcrypt.genSalt(10, (err, salt) => {
+                    if (err) throw err;
+                    bcrypt.hash(newPassword, salt, (err, hash) => {
+                        if (err) throw err;
+                        user.password = hash;
+                        user.save();
+                        callback(true, 'Password changed');
+                    });
+                })
+            } else {
+                callback(false, 'Password is incorrect');
+            }
+        })
+    })
+}
 
 module.exports = User;

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CheckFormService } from '../check-form.service';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 
@@ -18,7 +17,6 @@ export class AuthorizationComponent implements OnInit {
 
 
   constructor(
-    private checkForm: CheckFormService,
     private router: Router,
     private authService: AuthService
   ) {
@@ -41,9 +39,9 @@ export class AuthorizationComponent implements OnInit {
     this.authService.authUser(user).subscribe((response: any) => {
       if (!response.success) {
         if (user.password && user.login) {
-          this.passwordMessage = `<div class="aler alert-secondary">${response.msg}</div>`;
+          this.passwordMessage = response.msg;
         } else {
-          this.passwordMessage = `<div class="aler alert-secondary">Please, complete all fields</div>`;
+          this.passwordMessage = `Please, complete all fields`;
         }
       } else {
         this.authService.storeUser(response.token, response.user);
